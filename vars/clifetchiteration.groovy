@@ -10,5 +10,5 @@ env.name = projectName
 */
 def call(){
   //sh 'az extension add --name azure-devops' 
-  sh "az boards iteration project list --org https://dev.azure.com/${organization} --project ${projectname}"
+  sh "az boards iteration project list --org https://dev.azure.com/${Organization} --project ${projectname}"
 }
