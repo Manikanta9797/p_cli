@@ -11,6 +11,6 @@ env.name = projectName
 def call(){
   //sh 'az extension add --name azure-devops' 
   //sh "sudo cat /home/ec2-user/token.txt | az devops login --organization https://dev.azure.com/${organization}/"
-  sh "az boards work-item create --title ${Title_of_work-item} --type ${Type_of_work-item} --org https://dev.azure.com/${Organization}/ --project ${projectname} --assigned-to ${User_mail for work-item}"
+  sh "az boards work-item create --title ${Title_of_work-item} --type ${Type_of_work-item} --org https://dev.azure.com/${Organization}/ --project ${projectname} --assigned-to ${User_mail_for_work-item}"
 
 }
