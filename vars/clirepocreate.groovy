@@ -2,13 +2,13 @@ def call(jsondata){
 def jsonString = jsondata
 //println(jsonString)
 def jsonObj = readJSON text: jsonString
-println(jsonObj.environments.environment)
-String a=jsonObj.environments.environment.deploy.Organization
-String Organization=a.replaceAll("\\[", "").replaceAll("\\]","");
-String b=jsonObj.environments.environment.deploy.projectname
-String projectname=b.replaceAll("\\[", "").replaceAll("\\]","");
-String c=jsonObj.environments.environment.deploy.New_Repository_Name
-String New_Repository_Name=c.replaceAll("\\[", "").replaceAll("\\]","");
+//println(jsonObj.environments.environment)
+String a = jsonObj.environments.environment.deploy.Organization
+String Organization = a.replaceAll("\\[", "").replaceAll("\\]","");
+String b = jsonObj.environments.environment.deploy.projectname
+String projectname = b.replaceAll("\\[", "").replaceAll("\\]","");
+String c = jsonObj.environments.environment.deploy.New_Repository_Name
+String New_Repository_Name = c.replaceAll("\\[", "").replaceAll("\\]","");
 //String a=jsonObj.alm.projects.project.name
 //String projectName=a.replaceAll("\\[", "").replaceAll("\\]","");
 //env.name = projectName
