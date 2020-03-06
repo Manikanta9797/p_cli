@@ -10,7 +10,7 @@ String New_Repository_Name=jsonObj.environments.environment.deploy.New_Repositor
 String projectName=a.replaceAll("\\[", "").replaceAll("\\]","");
 env.name = projectName
 
-def call(){
+
   //sh 'az extension add --name azure-devops' 
   //sh 'sudo cat /home/ec2-user/token.txt | az devops login --organization https://dev.azure.com/vickysastryvs/'
   sh "sudo cat /home/ec2-user/token.txt | az devops login --organization https://dev.azure.com/${Organization}/"
