@@ -48,5 +48,5 @@ String Branch = i.replaceAll("\\[", "").replaceAll("\\]","");
   sh "az pipelines list --org https://dev.azure.com/${Organization} -p ${projectname}"  
 }
 
-}
+
 
