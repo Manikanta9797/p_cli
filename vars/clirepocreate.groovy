@@ -32,20 +32,20 @@ String Branch = i.replaceAll("\\[", "").replaceAll("\\]","");
   //sh 'sudo cat /home/ec2-user/token.txt | az devops login --organization https://dev.azure.com/vickysastryvs/'
   sh "sudo cat /home/ec2-user/token.txt | az devops login --organization https://dev.azure.com/${Organization}/" //login
   //create a repo
-  sh "az repos create --name ${New_Repository_Name} --organization https://dev.azure.com/${Organization} --project ${projectname}" 
+  //sh "az repos create --name ${New_Repository_Name} --organization https://dev.azure.com/${Organization} --project ${projectname}" 
  
   
   
   // create workitem
-  sh "az boards work-item create --title ${Title_of_workitem} --type ${Type_of_workitem} --org https://dev.azure.com/${Organization}/ --project ${projectname} --assigned-to ${User_mail_for_workitem}"
+  //sh "az boards work-item create --title ${Title_of_workitem} --type ${Type_of_workitem} --org https://dev.azure.com/${Organization}/ --project ${projectname} --assigned-to ${User_mail_for_workitem}"
   // create pipeline
-  sh "az pipelines create --name ${Pipeline_Name} --repository ${Source_code_repository} --branch ${Branch} --repository-type tfsgit --yml-path azure-pipelines.yml --org https://dev.azure.com/${Organization} --project ${projectname}"
+  sh "az pipelines create --name ${Pipeline_Name} --repository ${Source_code_repository} --branch ${Branch} --repository-type tfsgit --yml-path /home/ec2-user/azure-pipelines-1.yml --org https://dev.azure.com/${Organization} --project ${projectname}"
   // fetch repos
-  sh "az repos list --org https://dev.azure.com/${Organization} -p ${projectname}"
+  /*sh "az repos list --org https://dev.azure.com/${Organization} -p ${projectname}"
   //fetch iterations
   sh "az boards iteration project list --org https://dev.azure.com/${Organization} --project ${projectname}"
   // list pipelines
-  sh "az pipelines list --org https://dev.azure.com/${Organization} -p ${projectname}"  
+  sh "az pipelines list --org https://dev.azure.com/${Organization} -p ${projectname}"  */
 }
 
 
