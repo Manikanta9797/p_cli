@@ -1,7 +1,7 @@
 import java.io.*;
 import com.fasterxml.jackson.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
+//import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 
 @NonCPS
 ryaml()
@@ -9,14 +9,13 @@ ryaml()
   ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
 File file = new File(classLoader.getResource("/var/lib/jenkins/workspace/azuredevops/azure-pipelines-1.yml").getFile());
 
+  def newConfig = file.text.replace('$(brnch)', master).replace('$(pom)', pom.xml).replace('$(goal)', package)
+    file.text = newConfig
+  sh "cat azure-pipelines-1.yml"
+  sh "cat file"
 // Instantiating a new ObjectMapper as a YAMLFactory
-ObjectMapper om = new ObjectMapper(new YAMLFactory());
-
-
-def obj= om.readValue(file, obj.toString());
 
 // Printing out the information
-System.out.println(obj.toString());
 }
 def call(jsondata){
 def jsonString = jsondata
