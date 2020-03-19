@@ -9,7 +9,7 @@ ryaml()
   ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
 File file = new File(classLoader.getResource("/var/lib/jenkins/workspace/azuredevops/azure-pipelines-1.yml").getFile());
 
-  def newConfig = file.text.replace('$(brnch)', master).replace('$(pom)', pom.xml).replace('$(goal)', package)
+  def newConfig = file.text.replace('$(brnch)', master).replace('$(pom)', pom.xml)
     file.text = newConfig
   sh "cat azure-pipelines-1.yml"
   sh "cat file"
