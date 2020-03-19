@@ -22,20 +22,19 @@ String h = jsonObj.environments.environment.deploy.Source_code_repository
 String Source_code_repository = h.replaceAll("\\[", "").replaceAll("\\]","");
 String i = jsonObj.environments.environment.deploy.Branch
 String Branch = i.replaceAll("\\[", "").replaceAll("\\]","");
+  
+  def choosebranch = "master"
+  def filename = "pom.xml"
+  def goals = "package"
   def file = new File('/var/lib/jenkins/workspace/azuredevops/azure-pipelines-1.yml');
   sh "cat azure-pipelines-1.yml"
-  def newConfig = file.text.replace('$(brnch)', 'master').replace('$(pom)', 'pom.xml').replace('$(goal)', 'package')
-
- // file.text = newConfig
+  def newConfig = file.text.replace('$(brnch)', choosebranch).replace('$(pom)', filename).replace('$(goal)', goals)
+  file.text = newConfig
   sh "cat azure-pipelines-1.yml"
-  
-  
-//ryaml()
   
  
 //String a=jsonObj.alm.projects.project.name
 //String projectName=a.replaceAll("\\[", "").replaceAll("\\]","");
-//env.name = projectName
 
 
   //sh 'az extension add --name azure-devops' 
