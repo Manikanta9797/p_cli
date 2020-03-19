@@ -26,7 +26,7 @@ String Branch = i.replaceAll("\\[", "").replaceAll("\\]","");
   sh "cat azure-pipelines-1.yml"
   def newConfig = file.text.replace('$(brnch)', 'master').replace('$(pom)', 'pom.xml').replace('$(goal)', 'package')
 
-  file.text = newConfig
+ // file.text = newConfig
   sh "cat azure-pipelines-1.yml"
   
   
