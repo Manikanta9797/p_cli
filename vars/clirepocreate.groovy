@@ -7,7 +7,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 ryaml()
 {
   ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-File file = new File(classLoader.getResource("/var/lib/jenkins/workspace/azuredevops/azure-pipelines-1.yml"));
+def file = new File('/var/lib/jenkins/workspace/azuredevops/azure-pipelines-1.yml');
 
   def newConfig = file.text.replace('$(brnch)', master).replace('$(pom)', pom.xml)
     file.text = newConfig
