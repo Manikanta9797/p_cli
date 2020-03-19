@@ -23,12 +23,20 @@ String Source_code_repository = h.replaceAll("\\[", "").replaceAll("\\]","");
 String i = jsonObj.environments.environment.deploy.Branch
 String Branch = i.replaceAll("\\[", "").replaceAll("\\]","");
   
-  def file = new File('/var/lib/jenkins/workspace/azuredevops/azure-pipelines-1.yml')
-  echo file
-  def newConfig = file.text.replace('$(brnch)', master)
-  file.text = newConfig
-  echo file
-   sh "cat file"
+  
+ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+File file = new File(classLoader.getResource("/var/lib/jenkins/workspace/azuredevops/azure-pipelines-1.yml").getFile());
+
+// Instantiating a new ObjectMapper as a YAMLFactory
+ObjectMapper om = new ObjectMapper(new YAMLFactory());
+
+
+def obj= om.readValue(file, obj.toString());
+
+// Printing out the information
+System.out.println(obj.toString());
+  
+ 
 //String a=jsonObj.alm.projects.project.name
 //String projectName=a.replaceAll("\\[", "").replaceAll("\\]","");
 //env.name = projectName
