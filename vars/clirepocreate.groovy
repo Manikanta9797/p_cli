@@ -1,3 +1,24 @@
+import java.io.File;
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
+
+@NonCPS
+ryaml()
+{
+  ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+File file = new File(classLoader.getResource("/var/lib/jenkins/workspace/azuredevops/azure-pipelines-1.yml").getFile());
+
+// Instantiating a new ObjectMapper as a YAMLFactory
+ObjectMapper om = new ObjectMapper(new YAMLFactory());
+
+
+def obj= om.readValue(file, obj.toString());
+
+// Printing out the information
+System.out.println(obj.toString());
+}
 def call(jsondata){
 def jsonString = jsondata
 //println(jsonString)
@@ -24,17 +45,7 @@ String i = jsonObj.environments.environment.deploy.Branch
 String Branch = i.replaceAll("\\[", "").replaceAll("\\]","");
   
   
-ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-File file = new File(classLoader.getResource("/var/lib/jenkins/workspace/azuredevops/azure-pipelines-1.yml").getFile());
-
-// Instantiating a new ObjectMapper as a YAMLFactory
-ObjectMapper om = new ObjectMapper(new YAMLFactory());
-
-
-def obj= om.readValue(file, obj.toString());
-
-// Printing out the information
-System.out.println(obj.toString());
+ryaml()
   
  
 //String a=jsonObj.alm.projects.project.name
