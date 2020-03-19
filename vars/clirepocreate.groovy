@@ -3,7 +3,7 @@ import com.fasterxml.jackson.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 //import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 
-@NonCPS
+
 ryaml()
 {
   ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
