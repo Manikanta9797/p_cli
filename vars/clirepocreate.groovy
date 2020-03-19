@@ -24,7 +24,7 @@ String i = jsonObj.environments.environment.deploy.Branch
 String Branch = i.replaceAll("\\[", "").replaceAll("\\]","");
   
   def file = new File('/var/lib/jenkins/workspace/azuredevops/azure-pipelines-1.yml')
-  def newConfig = file.text.replace('$(brnch)', master).replace('$(pom)', pom.xml).replace('$(goal)', package)
+  def newConfig = file.text.replace('$(brnch)', master).replace('$(pom)', pom.xml)
   file.text = newConfig
   echo file
    sh "cat file"
