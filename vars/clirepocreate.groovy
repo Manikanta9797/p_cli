@@ -1,22 +1,3 @@
-import java.io.*;
-import com.fasterxml.jackson.*;
-import com.fasterxml.jackson.databind.ObjectMapper;
-//import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
-
-
-ryaml()
-{
-  ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-def file = new File('/var/lib/jenkins/workspace/azuredevops/azure-pipelines-1.yml');
-
-  def newConfig = file.text.replace('$(brnch)', master).replace('$(pom)', pom.xml)
-    file.text = newConfig
-  sh "cat azure-pipelines-1.yml"
-  sh "cat file"
-// Instantiating a new ObjectMapper as a YAMLFactory
-
-// Printing out the information
-}
 def call(jsondata){
 def jsonString = jsondata
 //println(jsonString)
@@ -42,11 +23,12 @@ String Source_code_repository = h.replaceAll("\\[", "").replaceAll("\\]","");
 String i = jsonObj.environments.environment.deploy.Branch
 String Branch = i.replaceAll("\\[", "").replaceAll("\\]","");
   def file = new File('/var/lib/jenkins/workspace/azuredevops/azure-pipelines-1.yml');
-
-  def newConfig = file.text.replace('$(brnch)', 'master').replace('$(pom)', 'pom.xml')
-    file.text = newConfig
   sh "cat azure-pipelines-1.yml"
-  sh "cat file"
+  def newConfig = file.text.replace('$(brnch)', 'master').replace('$(pom)', 'pom.xml').replace('$(goal)', 'package')
+
+  file.text = newConfig
+  sh "cat azure-pipelines-1.yml"
+  
   
 //ryaml()
   
