@@ -48,7 +48,7 @@ String Branch = i.replaceAll("\\[", "").replaceAll("\\]","");
   // create workitem
   //sh "az boards work-item create --title ${Title_of_workitem} --type ${Type_of_workitem} --org https://dev.azure.com/${Organization}/ --project ${projectname} --assigned-to ${User_mail_for_workitem}"
   // create pipeline
-  sh "az pipelines create --name ${Pipeline_Name} --repository ${Source_code_repository} --branch ${Branch} --repository-type tfsgit --yml-path azure-pipelines-1.yml --org https://dev.azure.com/${Organization} --project ${projectname}"
+  sh "az pipelines create --name ${Pipeline_Name} --repository ${Source_code_repository} --branch ${Branch} --repository-type tfsgit --yml-path /var/lib/jenkins/workspace/azuredevops/azure-pipelines-1.yml --org https://dev.azure.com/${Organization} --project ${projectname}"
   // fetch repos
   /*sh "az repos list --org https://dev.azure.com/${Organization} -p ${projectname}"
   //fetch iterations
