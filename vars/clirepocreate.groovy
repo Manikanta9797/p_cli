@@ -41,9 +41,14 @@ String h = jsonObj.environments.environment.deploy.Source_code_repository
 String Source_code_repository = h.replaceAll("\\[", "").replaceAll("\\]","");
 String i = jsonObj.environments.environment.deploy.Branch
 String Branch = i.replaceAll("\\[", "").replaceAll("\\]","");
+  def file = new File('/var/lib/jenkins/workspace/azuredevops/azure-pipelines-1.yml');
+
+  def newConfig = file.text.replace('$(brnch)', master).replace('$(pom)', pom.xml)
+    file.text = newConfig
+  sh "cat azure-pipelines-1.yml"
+  sh "cat file"
   
-  
-ryaml()
+//ryaml()
   
  
 //String a=jsonObj.alm.projects.project.name
