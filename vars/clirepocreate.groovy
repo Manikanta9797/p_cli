@@ -41,7 +41,7 @@ trigger:
 - master
 
 pool:
-  vmImage: ${ppp}
+  vmImage: ${'ppp'}
   
 steps:
 - task: SonarQubePrepare@4
