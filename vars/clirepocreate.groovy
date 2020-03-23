@@ -38,8 +38,8 @@ trigger:
 - master
 
 pool:
-  vmImage: "'ubuntu-latest'"
-
+  vmImage: '\''ubuntu-latest'\''
+  
 steps:
 - task: SonarQubePrepare@4
   inputs:
