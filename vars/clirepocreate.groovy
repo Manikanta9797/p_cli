@@ -11,8 +11,8 @@ def filename= "pipe.yml"
 def chbranch = "master"
 def pomname = "pom.xml"
 def goa = "package"
-def ppp= "'ubuntu-latest'"
-  
+def ppp= "ubuntu-latest"
+  String quotedX = quote(ppp)
   sh """
    curl --location --request POST 'https://dev.azure.com/vickysastryvs/${projectname}/_apis/git/repositories/${Source_code_repository}/pushes?api-version=5.1' \
 --header 'Content-Type: application/json' \
@@ -39,7 +39,7 @@ trigger:
 - master
 
 pool:
-  vmImage: ${ppp}
+  vmImage: ${quotedX}
   
 steps:
 - task: SonarQubePrepare@4
