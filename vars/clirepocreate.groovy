@@ -10,7 +10,7 @@ def objectid = resultJson.value[0].objectId
 def filename= "pipeline.yml"  
 def chbranch = "master"
 def pomname = "pom.xml"
-def goal1 = "package"
+def goalsss = "package"
   
   sh """
   curl --location --request POST 'https://dev.azure.com/vickysastryvs/${projectname}/_apis/git/repositories/${Source_code_repository}/pushes?api-version=5.1' \
@@ -54,7 +54,7 @@ steps:
     jdkArchitectureOption: 'x64'
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
-    goals: '${goal1}'
+    goals: '${goalsss}'
 - task: CopyFiles@2
   inputs:
     targetFolder: '$(Build.ArtifactStagingDirectory)'    
