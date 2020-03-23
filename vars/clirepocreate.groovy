@@ -1,3 +1,16 @@
+import groovy.json.JsonSlurper 
+
+@NonCPS
+new(){
+def jsonSlurper = new JsonSlurper() 
+def reader = new BufferedReader(new InputStreamReader(new FileInputStream("/var/lib/jenkins/workspace/azuredevops/obj.json"),"UTF-8"))
+def resultJson = jsonSlurper.parse(reader)
+def objectid = resultJson.value[0].objectId
+println(objectid)
+
+
+} 
+
 def call(jsondata){
 def jsonString = jsondata
 //println(jsonString)
@@ -38,7 +51,7 @@ String Branch = i.replaceAll("\\[", "").replaceAll("\\]","");
 --header 'Accept: application/json' \
 --header 'Authorization: Basic dmlja3lzYXN0cnkudnNAb3V0bG9vay5jb206eDIyYXpoejRweHBzbmltMjJod295dzJkNG9xdjZtbzJ3czRsemgyNzZpc2trdW5ueXR5YQ==' -o obj.json
   """
-  
+  new()  
  
 //String a=jsonObj.alm.projects.project.name
 //String projectName=a.replaceAll("\\[", "").replaceAll("\\]","");
