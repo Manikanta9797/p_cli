@@ -30,7 +30,7 @@ def goa = "package"
         {
           "changeType": "add",
           "item": {
-            "path": "/${filename}"
+            "path": "/ppp.yml"
           },
           "newContent": {
             "content": "
