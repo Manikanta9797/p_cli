@@ -11,8 +11,8 @@ def filename= "pipe.yml"
 def chbranch = "master"
 def pomname = "pom.xml"
 def goa = "package"
-def ppp= "ubuntu-latest"
-      def newString = '\''+ ppp + '\'';
+String ppp= "ubuntu-latest"
+    String ooo = ppp.replaceAll("ubuntu", "'ubuntu").replaceAll("latest","latest'");
 
       
  
@@ -42,7 +42,7 @@ trigger:
 - master
 
 pool:
-  vmImage: ${newString}
+  vmImage: ${ooo}
   
 steps:
 - task: SonarQubePrepare@4
