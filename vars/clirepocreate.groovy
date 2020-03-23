@@ -56,12 +56,12 @@ steps:
     goals: '\''package'\''
 - task: CopyFiles@2
   inputs:
-    targetFolder: '\''$(Build.ArtifactStagingDirectory)'\''    
+    targetFolder: '\''"$(Build.ArtifactStagingDirectory)"'\''    
 
 - task: PublishBuildArtifacts@1    
   displayName: '\''Publish Artifact: drop'\''
   inputs:
-    PathtoPublish: '\''$(build.artifactstagingdirectory)'\''",
+    PathtoPublish: '\''"$(build.artifactstagingdirectory)"'\''",
             "contentType": "rawtext"
           }
         }
