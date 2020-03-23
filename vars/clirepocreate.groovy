@@ -13,7 +13,7 @@ def pomname = "pom.xml"
 def goa = "package"
   
   sh """
-  curl --location --request POST 'https://dev.azure.com/vickysastryvs/${projectname}/_apis/git/repositories/${String Source_code_repository}/pushes?api-version=5.1' \
+  curl --location --request POST 'https://dev.azure.com/vickysastryvs/${projectname}/_apis/git/repositories/${Source_code_repository}/pushes?api-version=5.1' \
 --header 'Content-Type: application/json' \
 --data-raw '{
   "refUpdates": [
