@@ -12,8 +12,7 @@ def chbranch = "master"
 def pomname = "pom.xml"
 def goa = "package"
 String ppp= "ubuntu-latest"
-    String ooo = ppp.replaceAll("ubuntu", "'ubuntu").replaceAll("latest","latest'");
- println(ooo)
+    
       
  
   sh """
@@ -42,7 +41,7 @@ trigger:
 - master
 
 pool:
-  vmImage: \'${ooo}\'
+  vmImage: '\''${ppp}'\''
   
 steps:
 - task: SonarQubePrepare@4
