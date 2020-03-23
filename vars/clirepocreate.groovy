@@ -12,7 +12,6 @@ def chbranch = "master"
 def pomname = "pom.xml"
 def goa = "package"
 String ppp= "ubuntu-latest"
-    
     sh """
     wget --no-check-certificate --quiet \
   --method POST \
