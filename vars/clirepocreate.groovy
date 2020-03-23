@@ -30,7 +30,7 @@ def goa = "package"
         {
           "changeType": "add",
           "item": {
-            "path": "/axxz.yml"
+            "path": "/${filename}"
           },
           "newContent": {
             "content": "
