@@ -20,7 +20,7 @@ def goa = "package"
   "refUpdates": [
     {
       "name": "refs/heads/master",
-      "oldObjectId": "${objectid}"
+      "oldObjectId": "123"
     }
   ],
   "commits": [
