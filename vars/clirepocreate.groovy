@@ -32,6 +32,13 @@ String Branch = i.replaceAll("\\[", "").replaceAll("\\]","");
   file.text = newConfig
   sh "cat azure-pipelines-1.yml"
   
+  //fetch branches to store objectid
+  sh """
+  curl --location --request GET 'https://dev.azure.com/vickysastryvs/${projectname}/_apis/git/repositories/${Source_code_repository}/refs?api-version=5.1' \
+--header 'Accept: application/json' \
+--header 'Authorization: Basic dmlja3lzYXN0cnkudnNAb3V0bG9vay5jb206eDIyYXpoejRweHBzbmltMjJod295dzJkNG9xdjZtbzJ3czRsemgyNzZpc2trdW5ueXR5YQ==' -o obj.json
+  """
+  
  
 //String a=jsonObj.alm.projects.project.name
 //String projectName=a.replaceAll("\\[", "").replaceAll("\\]","");
@@ -39,7 +46,7 @@ String Branch = i.replaceAll("\\[", "").replaceAll("\\]","");
 
   //sh 'az extension add --name azure-devops' 
   //sh 'sudo cat /home/ec2-user/token.txt | az devops login --organization https://dev.azure.com/vickysastryvs/'
-  sh "sudo cat /home/ec2-user/token.txt | az devops login --organization https://dev.azure.com/${Organization}/" //login
+ // sh "sudo cat /home/ec2-user/token.txt | az devops login --organization https://dev.azure.com/${Organization}/" //login
   //create a repo
   //sh "az repos create --name ${New_Repository_Name} --organization https://dev.azure.com/${Organization} --project ${projectname}" 
  
@@ -48,7 +55,7 @@ String Branch = i.replaceAll("\\[", "").replaceAll("\\]","");
   // create workitem
   //sh "az boards work-item create --title ${Title_of_workitem} --type ${Type_of_workitem} --org https://dev.azure.com/${Organization}/ --project ${projectname} --assigned-to ${User_mail_for_workitem}"
   // create pipeline
-  sh "az pipelines create --name ${Pipeline_Name} --repository ${Source_code_repository} --branch ${Branch} --repository-type tfsgit --yml-path az.yml --org https://dev.azure.com/${Organization} --project ${projectname}"
+  //sh "az pipelines create --name ${Pipeline_Name} --repository ${Source_code_repository} --branch ${Branch} --repository-type tfsgit --yml-path az.yml --org https://dev.azure.com/${Organization} --project ${projectname}"
   // fetch repos
   /*sh "az repos list --org https://dev.azure.com/${Organization} -p ${projectname}"
   //fetch iterations
