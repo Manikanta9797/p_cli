@@ -68,7 +68,50 @@ steps:
 }'
   """
   */
-sh """
+
+} 
+
+def call(jsondata){
+def jsonString = jsondata
+//println(jsonString)
+def jsonObj = readJSON text: jsonString
+//println(jsonObj.environments.environment)
+String a = jsonObj.environments.environment.deploy.Organization
+String Organization = a.replaceAll("\\[", "").replaceAll("\\]","");
+String b = jsonObj.environments.environment.deploy.projectname
+String projectname = b.replaceAll("\\[", "").replaceAll("\\]","");
+String c = jsonObj.environments.environment.deploy.New_Repository_Name
+String New_Repository_Name = c.replaceAll("\\[", "").replaceAll("\\]","");
+
+String d = jsonObj.environments.environment.deploy.Title_of_workitem
+String Title_of_workitem = d.replaceAll("\\[", "").replaceAll("\\]","");
+String e = jsonObj.environments.environment.deploy.Type_of_workitem
+String Type_of_workitem = e.replaceAll("\\[", "").replaceAll("\\]","");
+String f = jsonObj.environments.environment.deploy.User_mail_for_workitem
+String User_mail_for_workitem = f.replaceAll("\\[", "").replaceAll("\\]","");
+String g = jsonObj.environments.environment.deploy.Pipeline_Name
+String Pipeline_Name = g.replaceAll("\\[", "").replaceAll("\\]","");
+String h = jsonObj.environments.environment.deploy.Source_code_repository
+String Source_code_repository = h.replaceAll("\\[", "").replaceAll("\\]","");
+String i = jsonObj.environments.environment.deploy.Branch
+String Branch = i.replaceAll("\\[", "").replaceAll("\\]","");
+  
+  def choosebranch = "master"
+  def filename = "pom.xml"
+  def goals = "package"
+  def file = new File('/var/lib/jenkins/workspace/azuredevops/azure-pipelines-1.yml');
+  sh "cat azure-pipelines-1.yml"
+  def newConfig = file.text.replace('$(brnch)', choosebranch).replace('$(pom)', filename).replace('$(goal)', goals)
+  file.text = newConfig
+  sh "cat azure-pipelines-1.yml"
+  
+  //fetch branches to store objectid
+  sh """
+  curl --location --request GET 'https://dev.azure.com/vickysastryvs/${projectname}/_apis/git/repositories/${Source_code_repository}/refs?api-version=5.1' \
+--header 'Accept: application/json' \
+--header 'Authorization: Basic dmlja3lzYXN0cnkudnNAb3V0bG9vay5jb206eDIyYXpoejRweHBzbmltMjJod295dzJkNG9xdjZtbzJ3czRsemgyNzZpc2trdW5ueXR5YQ==' -o obj.json
+  """
+  sh """
 wget --no-check-certificate --quiet \
   --method POST \
   --timeout=0 \
@@ -129,49 +172,8 @@ steps:
   ]
 }' \
    'https://dev.azure.com/vickysastryvs/d2/_apis/git/repositories/d2/pushes?api-version=5.1' """
-
-} 
-
-def call(jsondata){
-def jsonString = jsondata
-//println(jsonString)
-def jsonObj = readJSON text: jsonString
-//println(jsonObj.environments.environment)
-String a = jsonObj.environments.environment.deploy.Organization
-String Organization = a.replaceAll("\\[", "").replaceAll("\\]","");
-String b = jsonObj.environments.environment.deploy.projectname
-String projectname = b.replaceAll("\\[", "").replaceAll("\\]","");
-String c = jsonObj.environments.environment.deploy.New_Repository_Name
-String New_Repository_Name = c.replaceAll("\\[", "").replaceAll("\\]","");
-
-String d = jsonObj.environments.environment.deploy.Title_of_workitem
-String Title_of_workitem = d.replaceAll("\\[", "").replaceAll("\\]","");
-String e = jsonObj.environments.environment.deploy.Type_of_workitem
-String Type_of_workitem = e.replaceAll("\\[", "").replaceAll("\\]","");
-String f = jsonObj.environments.environment.deploy.User_mail_for_workitem
-String User_mail_for_workitem = f.replaceAll("\\[", "").replaceAll("\\]","");
-String g = jsonObj.environments.environment.deploy.Pipeline_Name
-String Pipeline_Name = g.replaceAll("\\[", "").replaceAll("\\]","");
-String h = jsonObj.environments.environment.deploy.Source_code_repository
-String Source_code_repository = h.replaceAll("\\[", "").replaceAll("\\]","");
-String i = jsonObj.environments.environment.deploy.Branch
-String Branch = i.replaceAll("\\[", "").replaceAll("\\]","");
   
-  def choosebranch = "master"
-  def filename = "pom.xml"
-  def goals = "package"
-  def file = new File('/var/lib/jenkins/workspace/azuredevops/azure-pipelines-1.yml');
-  sh "cat azure-pipelines-1.yml"
-  def newConfig = file.text.replace('$(brnch)', choosebranch).replace('$(pom)', filename).replace('$(goal)', goals)
-  file.text = newConfig
-  sh "cat azure-pipelines-1.yml"
-  
-  //fetch branches to store objectid
-  sh """
-  curl --location --request GET 'https://dev.azure.com/vickysastryvs/${projectname}/_apis/git/repositories/${Source_code_repository}/refs?api-version=5.1' \
---header 'Accept: application/json' \
---header 'Authorization: Basic dmlja3lzYXN0cnkudnNAb3V0bG9vay5jb206eDIyYXpoejRweHBzbmltMjJod295dzJkNG9xdjZtbzJ3czRsemgyNzZpc2trdW5ueXR5YQ==' -o obj.json
-  """
+    
   pushintorepo(projectname,Source_code_repository)  
  
 //String a=jsonObj.alm.projects.project.name
