@@ -156,14 +156,7 @@ steps:
     publishJUnitResults: true
     testResultsFiles: '\''**/surefire-reports/TEST-*.xml'\''
     goals: '\''package'\''
-- task: CopyFiles@2
-  inputs:
-    targetFolder: '\''$(Build.ArtifactStagingDirectory)'\''    
-
-- task: PublishBuildArtifacts@1    
-  displayName: '\''Publish Artifact: drop'\''
-  inputs:
-    PathtoPublish: '\''$(build.artifactstagingdirectory)'\''",
+",
             "contentType": "rawText"
           }
         }
