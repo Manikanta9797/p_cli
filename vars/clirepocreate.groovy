@@ -47,7 +47,7 @@ steps:
     scannerMode: 'Other'
 - task: Maven@3
   inputs:
-    mavenPomFile: '${pomname}'
+    mavenPomFile: '"${pomname}"'
     mavenOptions: '-Xmx3072m'
     javaHomeOption: 'JDKVersion'
     jdkVersionOption: '1.8'
