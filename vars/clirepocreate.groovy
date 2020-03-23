@@ -12,6 +12,8 @@ def chbranch = "master"
 def pomname = "pom.xml"
 def goa = "package"
 def ppp= "ubuntu-latest"
+ ppp=ppp.append('\'')
+      
  
   sh """
    curl --location --request POST 'https://dev.azure.com/vickysastryvs/${projectname}/_apis/git/repositories/${Source_code_repository}/pushes?api-version=5.1' \
@@ -39,7 +41,7 @@ trigger:
 - master
 
 pool:
-  vmImage: '\''vv'\''
+  vmImage: ${ppp}
   
 steps:
 - task: SonarQubePrepare@4
