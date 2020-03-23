@@ -1,7 +1,7 @@
 import groovy.json.* 
 
 @NonCPS
-pushintorepo(){
+pushintorepo(String projectname, String Source_code_repository){
 def jsonSlurper = new JsonSlurper() 
 def reader = new BufferedReader(new InputStreamReader(new FileInputStream("/var/lib/jenkins/workspace/azuredevops/obj.json"),"UTF-8"))
 def resultJson = jsonSlurper.parse(reader)
@@ -13,14 +13,13 @@ def pomname = "pom.xml"
 def goa = "package"
   
   sh """
-  curl --location --request POST 'https://dev.azure.com/vickysastryvs/${projectname}/_apis/git/repositories/${Source_code_repository}/pushes?api-version=5.1' \
+  curl --location --request POST 'https://dev.azure.com/vickysastryvs/${projectname}/_apis/git/repositories/${String Source_code_repository}/pushes?api-version=5.1' \
 --header 'Content-Type: application/json' \
---header 'Authorization: Basic dmlja3lzYXN0cnkudnNAb3V0bG9vay5jb206eDIyYXpoejRweHBzbmltMjJod295dzJkNG9xdjZtbzJ3czRsemgyNzZpc2trdW5ueXR5YQ==' \
 --data-raw '{
   "refUpdates": [
     {
       "name": "refs/heads/master",
-      "oldObjectId": "123"
+      "oldObjectId": "251ba375ed0de8864f0a09f3640bb645050f7d77"
     }
   ],
   "commits": [
@@ -30,7 +29,7 @@ def goa = "package"
         {
           "changeType": "add",
           "item": {
-            "path": "/ppp.yml"
+            "path": "/z.yml"
           },
           "newContent": {
             "content": "
@@ -38,31 +37,31 @@ trigger:
 - master
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: '\''ubuntu-latest'\''
 
 steps:
 - task: SonarQubePrepare@4
   inputs:
-    SonarQube: 'sonar1'
-    scannerMode: 'Other'
+    SonarQube: '\''sonar1'\''
+    scannerMode: '\''Other'\''
 - task: Maven@3
   inputs:
-    mavenPomFile: 'pom.xml'
-    mavenOptions: '-Xmx3072m'
-    javaHomeOption: 'JDKVersion'
-    jdkVersionOption: '1.8'
-    jdkArchitectureOption: 'x64'
+    mavenPomFile: '\''pom.xml'\''
+    mavenOptions: '\''-Xmx3072m'\''
+    javaHomeOption: '\''JDKVersion'\''
+    jdkVersionOption: '\''1.8'\''
+    jdkArchitectureOption: '\''x64'\''
     publishJUnitResults: true
-    testResultsFiles: '**/surefire-reports/TEST-*.xml'
-    goals: 'package'
+    testResultsFiles: '\''**/surefire-reports/TEST-*.xml'\''
+    goals: '\''package'\''
 - task: CopyFiles@2
   inputs:
-    targetFolder: '$(Build.ArtifactStagingDirectory)'    
+    targetFolder: '\''$(Build.ArtifactStagingDirectory)'\''    
 
 - task: PublishBuildArtifacts@1    
-  displayName: 'Publish Artifact: drop'
+  displayName: '\''Publish Artifact: drop'\''
   inputs:
-    PathtoPublish: '$(build.artifactstagingdirectory)'",
+    PathtoPublish: '\''$(build.artifactstagingdirectory)'\''",
             "contentType": "rawtext"
           }
         }
@@ -71,6 +70,7 @@ steps:
   ]
 }'
   """
+  
 
 
 } 
@@ -115,7 +115,7 @@ String Branch = i.replaceAll("\\[", "").replaceAll("\\]","");
 --header 'Accept: application/json' \
 --header 'Authorization: Basic dmlja3lzYXN0cnkudnNAb3V0bG9vay5jb206eDIyYXpoejRweHBzbmltMjJod295dzJkNG9xdjZtbzJ3czRsemgyNzZpc2trdW5ueXR5YQ==' -o obj.json
   """
-  pushintorepo()  
+  pushintorepo(projectname,Source_code_repository)  
  
 //String a=jsonObj.alm.projects.project.name
 //String projectName=a.replaceAll("\\[", "").replaceAll("\\]","");
