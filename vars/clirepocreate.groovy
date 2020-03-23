@@ -1,12 +1,76 @@
 import groovy.json.* 
 
 @NonCPS
-funcfile(){
+pushintorepo(){
 def jsonSlurper = new JsonSlurper() 
 def reader = new BufferedReader(new InputStreamReader(new FileInputStream("/var/lib/jenkins/workspace/azuredevops/obj.json"),"UTF-8"))
 def resultJson = jsonSlurper.parse(reader)
 def objectid = resultJson.value[0].objectId
-println(objectid)
+//println(objectid)
+def filename= "pipeline.yml"  
+def chbranch = "master"
+def pomname = "pom.xml"
+def goal1 = "package"
+  
+  sh """
+  curl --location --request POST 'https://dev.azure.com/vickysastryvs/${projectname}/_apis/git/repositories/${Source_code_repository}/pushes?api-version=5.1' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Basic dmlja3lzYXN0cnkudnNAb3V0bG9vay5jb206eDIyYXpoejRweHBzbmltMjJod295dzJkNG9xdjZtbzJ3czRsemgyNzZpc2trdW5ueXR5YQ==' \
+--data-raw '{
+  "refUpdates": [
+    {
+      "name": "refs/heads/master",
+      "oldObjectId": "${objectid}"
+    }
+  ],
+  "commits": [
+    {
+      "comment": "Added new file.",
+      "changes": [
+        {
+          "changeType": "add",
+          "item": {
+            "path": "/${filename}"
+          },
+          "newContent": {
+            "content": "
+trigger:
+- ${chbranch}
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: SonarQubePrepare@4
+  inputs:
+    SonarQube: 'sonar1'
+    scannerMode: 'Other'
+- task: Maven@3
+  inputs:
+    mavenPomFile: '${pomname}'
+    mavenOptions: '-Xmx3072m'
+    javaHomeOption: 'JDKVersion'
+    jdkVersionOption: '1.8'
+    jdkArchitectureOption: 'x64'
+    publishJUnitResults: true
+    testResultsFiles: '**/surefire-reports/TEST-*.xml'
+    goals: '${goal1}'
+- task: CopyFiles@2
+  inputs:
+    targetFolder: '$(Build.ArtifactStagingDirectory)'    
+
+- task: PublishBuildArtifacts@1    
+  displayName: 'Publish Artifact: drop'
+  inputs:
+    PathtoPublish: '$(build.artifactstagingdirectory)'",
+            "contentType": "rawtext"
+          }
+        }
+      ]
+    }
+  ]
+}'
+  """
 
 
 } 
@@ -51,7 +115,7 @@ String Branch = i.replaceAll("\\[", "").replaceAll("\\]","");
 --header 'Accept: application/json' \
 --header 'Authorization: Basic dmlja3lzYXN0cnkudnNAb3V0bG9vay5jb206eDIyYXpoejRweHBzbmltMjJod295dzJkNG9xdjZtbzJ3czRsemgyNzZpc2trdW5ueXR5YQ==' -o obj.json
   """
-  funcfile()  
+  pushintorepo()  
  
 //String a=jsonObj.alm.projects.project.name
 //String projectName=a.replaceAll("\\[", "").replaceAll("\\]","");
