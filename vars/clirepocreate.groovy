@@ -42,7 +42,7 @@ trigger:
 - master
 
 pool:
-  vmImage: ${ooo}
+  vmImage: \'${ooo}\'
   
 steps:
 - task: SonarQubePrepare@4
