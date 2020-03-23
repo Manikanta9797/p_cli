@@ -7,7 +7,7 @@ def reader = new BufferedReader(new InputStreamReader(new FileInputStream("/var/
 def resultJson = jsonSlurper.parse(reader)
 def objectid = resultJson.value[0].objectId
 //println(objectid)
-def filename= "pipeline.yml"  
+def filename= "pipe.yml"  
 def chbranch = "master"
 def pomname = "pom.xml"
 def goa = "package"
@@ -126,7 +126,8 @@ String Branch = i.replaceAll("\\[", "").replaceAll("\\]","");
   // create workitem
   //sh "az boards work-item create --title ${Title_of_workitem} --type ${Type_of_workitem} --org https://dev.azure.com/${Organization}/ --project ${projectname} --assigned-to ${User_mail_for_workitem}"
   // create pipeline
-  //sh "az pipelines create --name ${Pipeline_Name} --repository ${Source_code_repository} --branch ${Branch} --repository-type tfsgit --yml-path az.yml --org https://dev.azure.com/${Organization} --project ${projectname}"
+  def path = "pipe.yml"
+  sh "az pipelines create --name ${Pipeline_Name} --repository ${Source_code_repository} --branch ${Branch} --repository-type tfsgit --yml-path ${path} --org https://dev.azure.com/${Organization} --project ${projectname}"
   // fetch repos
   /*sh "az repos list --org https://dev.azure.com/${Organization} -p ${projectname}"
   //fetch iterations
