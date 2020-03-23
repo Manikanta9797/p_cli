@@ -53,7 +53,7 @@ steps:
     jdkVersionOption: '\''1.8'\''
     jdkArchitectureOption: '\''x64'\''
     publishJUnitResults: true
-    testResultsFiles: '**/surefire-reports/TEST-*.xml'
+    testResultsFiles: `'**/surefire-reports/TEST-*.xml'`
     goals: '\''package'\''
 ",
             "contentType": "rawtext"
