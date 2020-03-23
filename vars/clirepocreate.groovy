@@ -1,5 +1,5 @@
 import groovy.json.* 
-import java.lang.*
+
 @NonCPS
 pushintorepo(String projectname, String Source_code_repository){
 def jsonSlurper = new JsonSlurper() 
@@ -11,8 +11,8 @@ def filename= "pipe.yml"
 def chbranch = "master"
 def pomname = "pom.xml"
 def goa = "package"
-def ppp= "ubuntu-latest"
- ppp=ppp.append('\'')
+def ppp= "\'ubuntu-latest\'"
+
       
  
   sh """
