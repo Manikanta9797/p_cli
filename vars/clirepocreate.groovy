@@ -13,14 +13,14 @@ def pomname = "pom.xml"
 def goa = "package"
   
   sh """
-   curl --location --request POST 'https://dev.azure.com/vickysastryvs/${projectname}/_apis/git/repositories/d2/pushes?api-version=5.1' \
+   curl --location --request POST 'https://dev.azure.com/vickysastryvs/${projectname}/_apis/git/repositories/${Source_code_repository}/pushes?api-version=5.1' \
 --header 'Content-Type: application/json' \
 --header 'Authorization: Basic dmlja3lzYXN0cnkudnNAb3V0bG9vay5jb206eDIyYXpoejRweHBzbmltMjJod295dzJkNG9xdjZtbzJ3czRsemgyNzZpc2trdW5ueXR5YQ==' \
 --data-raw '{
   "refUpdates": [
     {
       "name": "refs/heads/master",
-      "oldObjectId": "4dfc8c98069552dad2646e98403b3fba8d233efb"
+      "oldObjectId": "${objectid}"
     }
   ],
   "commits": [
