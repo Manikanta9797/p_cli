@@ -1,6 +1,6 @@
 def call()
 {
-sh '''
+sh """
 curl --location --request POST 'https://dev.azure.com/vickysastryvs/d2/_apis/git/repositories/d2/pushes?api-version=5.1' \
 --header 'Content-Type: application/json' \
 --header 'Authorization: Basic dmlja3lzYXN0cnkudnNAb3V0bG9vay5jb206eDIyYXpoejRweHBzbmltMjJod295dzJkNG9xdjZtbzJ3czRsemgyNzZpc2trdW5ueXR5YQ==' \
@@ -8,7 +8,7 @@ curl --location --request POST 'https://dev.azure.com/vickysastryvs/d2/_apis/git
   "refUpdates": [
     {
       "name": "refs/heads/master",
-      "oldObjectId": "094955d2bac86a1ba073765ba392edbed0bb8f6a"
+      "oldObjectId": "ae4963b5ad493e22cbf21f99401f88911388ae28"
     }
   ],
   "commits": [
@@ -18,7 +18,7 @@ curl --location --request POST 'https://dev.azure.com/vickysastryvs/d2/_apis/git
         {
           "changeType": "add",
           "item": {
-            "path": "/bbbbb.yml"
+            "path": "/bbbbbbbb.yml"
           },
           "newContent": {
             "content": "
@@ -51,5 +51,5 @@ steps:
     }
   ]
 }'
-'''
+"""
 }
