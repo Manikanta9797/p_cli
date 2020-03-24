@@ -31,11 +31,11 @@ pool:
 steps:
 - task: SonarQubePrepare@4
   inputs:
-    SonarQube: '\''sonar1'\''
-    scannerMode: '\''Other'\''
+    SonarQube: 'sonar1'
+    scannerMode: '/''Other'/''
 - task: Maven@3
   inputs:
-    mavenPomFile: '\''pom.xml'\''
+    mavenPomFile: '/''pom.xml''/'
     mavenOptions: '\''-Xmx3072m'\''
     javaHomeOption: '\''JDKVersion'\''
     jdkVersionOption: '\''1.8'\''
