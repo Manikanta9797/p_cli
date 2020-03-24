@@ -8,7 +8,7 @@ curl --location --request POST 'https://dev.azure.com/vickysastryvs/d2/_apis/git
   "refUpdates": [
     {
       "name": "refs/heads/master",
-      "oldObjectId": "4bb4b5ff668beeef1f431dc850d414846030a274"
+      "oldObjectId": "2218a0efbe81ddf69f182c0b87517a09fa3f90e5"
     }
   ],
   "commits": [
