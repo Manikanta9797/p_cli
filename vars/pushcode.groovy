@@ -43,7 +43,8 @@ steps:
     publishJUnitResults: true
     testResultsFiles: '\''**/surefire-reports/TEST-*.xml'\''
     goals: '\''package'\''
-
+",
+            "contentType": "rawText"
           }
         }
       ]
