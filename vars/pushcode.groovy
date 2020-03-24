@@ -8,7 +8,7 @@ curl --location --request POST 'https://dev.azure.com/vickysastryvs/d2/_apis/git
   "refUpdates": [
     {
       "name": "refs/heads/master",
-      "oldObjectId": "b55f28e70f98230f0b3b2f3ced09f9dd34557598"
+      "oldObjectId": "094955d2bac86a1ba073765ba392edbed0bb8f6a"
     }
   ],
   "commits": [
@@ -18,7 +18,7 @@ curl --location --request POST 'https://dev.azure.com/vickysastryvs/d2/_apis/git
         {
           "changeType": "add",
           "item": {
-            "path": "/bbb.yml"
+            "path": "/bbbbb.yml"
           },
           "newContent": {
             "content": "
@@ -36,9 +36,9 @@ steps:
 - task: Maven@3
   inputs:
     mavenPomFile: '/''pom.xml''/'
-    mavenOptions: '\''-Xmx3072m'\''
-    javaHomeOption: '\''JDKVersion'\''
-    jdkVersionOption: '\''1.8'\''
+    mavenOptions: /'-Xmx3072m/'
+    javaHomeOption: '\'JDKVersion\''
+    jdkVersionOption: \'1.8\'
     jdkArchitectureOption: '\''x64'\''
     publishJUnitResults: true
     testResultsFiles: '\''**/surefire-reports/TEST-*.xml'\''
