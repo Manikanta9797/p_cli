@@ -8,7 +8,7 @@ curl --location --request POST 'https://dev.azure.com/vickysastryvs/d2/_apis/git
   "refUpdates": [
     {
       "name": "refs/heads/master",
-      "oldObjectId": "2218a0efbe81ddf69f182c0b87517a09fa3f90e5"
+      "oldObjectId": "e90e9f7f70a254c3be89705d46e4a00953c38042"
     }
   ],
   "commits": [
@@ -18,7 +18,7 @@ curl --location --request POST 'https://dev.azure.com/vickysastryvs/d2/_apis/git
         {
           "changeType": "add",
           "item": {
-            "path": "/axcjfz.yml"
+            "path": "/bbb.yml"
           },
           "newContent": {
             "content": "
@@ -26,7 +26,7 @@ trigger:
 - master
 
 pool:
-  vmImage: '\''vj'\''
+  vmImage: /'vj'/
 
 steps:
 - task: SonarQubePrepare@4
