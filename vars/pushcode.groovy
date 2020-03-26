@@ -1,3 +1,14 @@
+import groovy.json.* 
+
+@NonCPS
+pushintorepo(String projectname, String Source_code_repository){
+def jsonSlurper = new JsonSlurper() 
+def reader = new BufferedReader(new InputStreamReader(new FileInputStream("/var/lib/jenkins/workspace/azuredevops/obj.json"),"UTF-8"))
+def resultJson = jsonSlurper.parse(reader)
+def objectid = resultJson.value[0].objectId
+
+
+
 def call()
 {
   sh """
