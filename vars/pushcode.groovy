@@ -63,7 +63,7 @@ steps:
 def call()
 {
   sh """
-  curl --location --request GET 'https://dev.azure.com/vickysastryvs/${projectname}/_apis/git/repositories/${Source_code_repository}/refs?api-version=5.1' \
+  curl --location --request GET 'https://dev.azure.com/vickysastryvs/d2/_apis/git/repositories/d2/refs?api-version=5.1' \
 --header 'Accept: application/json' \
 --header 'Authorization: Basic dmlja3lzYXN0cnkudnNAb3V0bG9vay5jb206eDIyYXpoejRweHBzbmltMjJod295dzJkNG9xdjZtbzJ3czRsemgyNzZpc2trdW5ueXR5YQ==' -o ob.json
   """
