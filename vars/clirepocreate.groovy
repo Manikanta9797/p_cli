@@ -1,4 +1,4 @@
-import groovy.json.* 
+/*import groovy.json.* 
 
 @NonCPS
 pushintorepo(String projectname, String Source_code_repository){
@@ -56,7 +56,6 @@ steps:
     jdkVersionOption: '\''1.8'\''
     jdkArchitectureOption: '\''x64'\''
     publishJUnitResults: true   
-    #testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: '\''package'\''
 ",
             "contentType": "rawtext"
@@ -70,7 +69,7 @@ steps:
   
 
 } 
-
+*/
 def call(jsondata){
 def jsonString = jsondata
 //println(jsonString)
@@ -99,20 +98,20 @@ String Branch = i.replaceAll("\\[", "").replaceAll("\\]","");
   def choosebranch = "master"
   def filename = "pom.xml"
   def goals = "package"
-  def file = new File('/var/lib/jenkins/workspace/azuredevops/azure-pipelines-1.yml');
-  sh "cat azure-pipelines-1.yml"
+  def file = new File('/home/ec2-user/azure-pipelines.yml');
+  sh "cat /home/ec2-user/azure-pipelines.yml"
   def newConfig = file.text.replace('$(brnch)', choosebranch).replace('$(pom)', filename).replace('$(goal)', goals)
   file.text = newConfig
-  sh "cat azure-pipelines-1.yml"
+  sh "cat /home/ec2-user/azure-pipelines.yml"
   
   //fetch branches to store objectid
-  sh """
+ /* sh """
   curl --location --request GET 'https://dev.azure.com/vickysastryvs/${projectname}/_apis/git/repositories/${Source_code_repository}/refs?api-version=5.1' \
 --header 'Accept: application/json' \
 --header 'Authorization: Basic dmlja3lzYXN0cnkudnNAb3V0bG9vay5jb206eDIyYXpoejRweHBzbmltMjJod295dzJkNG9xdjZtbzJ3czRsemgyNzZpc2trdW5ueXR5YQ==' -o obj.json
   """
-    
-  pushintorepo(projectname,Source_code_repository)  
+    */
+ // pushintorepo(projectname,Source_code_repository)  
  
 //String a=jsonObj.alm.projects.project.name
 //String projectName=a.replaceAll("\\[", "").replaceAll("\\]","");
@@ -129,8 +128,8 @@ String Branch = i.replaceAll("\\[", "").replaceAll("\\]","");
   // create workitem
   //sh "az boards work-item create --title ${Title_of_workitem} --type ${Type_of_workitem} --org https://dev.azure.com/${Organization}/ --project ${projectname} --assigned-to ${User_mail_for_workitem}"
   // create pipeline
-  def path = "pipe.yml"
-  sh "az pipelines create --name ${Pipeline_Name} --repository ${Source_code_repository} --branch ${Branch} --repository-type tfsgit --yml-path ${path} --org https://dev.azure.com/${Organization} --project ${projectname}"
+  //def path = "pipe.yml"
+  //sh "az pipelines create --name ${Pipeline_Name} --repository ${Source_code_repository} --branch ${Branch} --repository-type tfsgit --yml-path ${path} --org https://dev.azure.com/${Organization} --project ${projectname}"
   // fetch repos
   /*sh "az repos list --org https://dev.azure.com/${Organization} -p ${projectname}"
   //fetch iterations
