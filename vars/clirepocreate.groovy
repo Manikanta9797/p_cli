@@ -105,7 +105,7 @@ String Branch = i.replaceAll("\\[", "").replaceAll("\\]","");
   def newConfig = file.text.replace('$(brnch)', choosebranch).replace('$(pom)', filename).replace('$(goal)', goals)
   file.text = newConfig
   sh "cat first.yml"
- // sh "sudo sh /home/ec2-user/add.sh"
+  sh "sudo sh /home/ec2-user/add.sh"
     
   
   //fetch branches to store objectid
