@@ -98,11 +98,12 @@ String Branch = i.replaceAll("\\[", "").replaceAll("\\]","");
   def choosebranch = "master"
   def filename = "pom.xml"
   def goals = "package"
-  def file = new File('/home/ec2-user/azure-pipelines.yml');
-  sh "sudo cat /home/ec2-user/azure-pipelines.yml"
+  sh "sudo cp /home/ec2-user/first.yml /var/lib/jenkins/workspace/azuredevops/"  
+  def file = new File('/var/lib/jenkins/workspace/azuredevops/first.yml');
+  sh "cat first.yml"
   def newConfig = file.text.replace('$(brnch)', choosebranch).replace('$(pom)', filename).replace('$(goal)', goals)
   file.text = newConfig
-  sh "sudo cat /home/ec2-user/azure-pipelines.yml"
+  sh "cat first.yml"
   
   //fetch branches to store objectid
  /* sh """
