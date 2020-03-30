@@ -99,7 +99,7 @@ String Branch = i.replaceAll("\\[", "").replaceAll("\\]","");
   def filename = "pom.xml"
   def goals = "package"
   sh "sudo cp /home/ec2-user/first.yml /var/lib/jenkins/workspace/azuredevops/"  
-    sleep(5);
+  sh "sudo chown jenkins first.yml"
   def file = new File('/var/lib/jenkins/workspace/azuredevops/first.yml');
   sh "cat first.yml"
   def newConfig = file.text.replace('$(brnch)', choosebranch).replace('$(pom)', filename).replace('$(goal)', goals)
