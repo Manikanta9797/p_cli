@@ -106,8 +106,8 @@ String Branch = i.replaceAll("\\[", "").replaceAll("\\]","");
   file.text = newConfig
   sh "cat first.yml"
   sh "sudo sh /home/ec2-user/add.sh"
-  sh "cd /home/ec2-user/suma"
-  sh "git push origin master"
+  sh "sudo sh /home/ec2-user/addd.sh"
+  
     
   
   //fetch branches to store objectid
